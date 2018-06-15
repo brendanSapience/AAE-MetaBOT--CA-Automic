@@ -10,6 +10,7 @@ namespace CAAutomicLib
     {
         
         RestUtils rUtils = new RestUtils();
+        JsonUtils jUtils = new JsonUtils();
 
         public String ARA_GetApplications(String ARAHost, int ARAPort, Boolean isHttps, int ARAApiVersion,String ClientLoginDept,String ARAPassword,int MaxResults)
         {
@@ -82,5 +83,33 @@ namespace CAAutomicLib
 
             return JsonRes;
         }
+
+        public String Slack_GetUserListByName(String xAuthToken)
+        {
+            String URL = "https://slack.com/api/users.list?token="+ xAuthToken;
+
+            String JsonRes = rUtils.CallRestGETNoAuth(URL);
+            String ListResp = jUtils.JsonArrayToList(JsonRes,"name");
+            return ListResp;
+        }
+
+        public String Slack_GetUserListByID(String xAuthToken)
+        {
+            String URL = "https://slack.com/api/users.list?token=" + xAuthToken;
+
+            String JsonRes = rUtils.CallRestGETNoAuth(URL);
+            String ListResp = jUtils.JsonArrayToList(JsonRes,"id");
+            return ListResp;
+        }
+
+        public String Slack_GetUserListAsCSVArray(String xAuthToken)
+        {
+            String URL = "https://slack.com/api/users.list?token=" + xAuthToken;
+            
+            String JsonRes = rUtils.CallRestGETNoAuth(URL);
+            String ListResp = jUtils.JsonArrayToCSVArray(JsonRes);
+            return ListResp;
+        }
+        
     }
 }

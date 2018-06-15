@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonUtils.cs" />
     <Compile Include="UsefulMethods.cs" />
     <Compile Include="RestUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
